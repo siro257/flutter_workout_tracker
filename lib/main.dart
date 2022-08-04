@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_workout_tracker/constants.dart';
+import 'package:material_color_generator/material_color_generator.dart';
 
 import 'home_page.dart';
 
@@ -15,7 +17,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Workout Tracker',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: generateMaterialColor(color: kPrimaryColor),
       ),
       home: const HomePage(title: 'WE GO JIM'),
     );
