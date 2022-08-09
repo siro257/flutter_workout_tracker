@@ -14,6 +14,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final List<String> entries = <String>["Day 1", "Day 2", "Day 3"];
+    final List<int> colors = <int>[600, 400];
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -21,52 +23,35 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
+          // graph summary
           Container(
-            height: size.height * 0.2,
-            child: Stack(
-              children: [
-                Container(
-                  height: size.height * 0.2 - 27,
-                  padding: const EdgeInsets.only(
-                    left: kDefaultPadding,
-                    right: kDefaultPadding,
-                    bottom: 36 + kDefaultPadding,
-                  ),
-                  decoration: const BoxDecoration(
-                    color: kPrimaryColor,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(36),
-                      bottomRight: Radius.circular(36),
-                    ),
-                  ),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Hi James",
-                        style: Theme.of(context).textTheme.headline5?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
+            height: size.height * 0.3,
+            color: Colors.amberAccent,
+            child: const Center(
+              child: Text("dis graph"),
+            ),
+          ),
+          // Workout detail day by day
+          Expanded(
+            child: ListView.builder(
+              itemCount: entries.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: InkWell(
+                    child: Ink(
+                      height: 100,
+                      color: Colors.amber[colors[index % 2]],
+                      child: Center(
+                        child: Text("Workout ${entries[index]}"),
                       ),
-                    ],
-                  ),
-                ),
-                Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: 20,
-                  height: 54,
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "maybe put graph here?",
-                      style: Theme.of(context).textTheme.headline5?.copyWith(
-                            color: Colors.white,
-                          ),
                     ),
+                    onTap: () {
+                      print("touched ${index}");
+                    },
                   ),
-                ),
-              ],
+                );
+              },
             ),
           )
         ],
